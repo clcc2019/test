@@ -18,14 +18,14 @@ def GetToken():
     }
     id = 2049
     index = 'http://www.dtpwxn.top/?forum-1.htm'
-    index_html = requests.get(index,headers=headers).text 
-    index_id = re.search(r'/?-\d{4}',index_html)#得到id
-    now_id = int(re.search(r'[^-]{4}',index_id.group()).group()) #去掉-
-    mo_time = re.search(r'\d{1,2}[\u4e00-\u9fa5]{3}',index_html).group() #得到时间
-    print('更新时间：')
-    print('>>>>此 Token在 %s 更新<<<<'% mo_time)
-    if now_id > id:
-        id = now_id
+    IndexHtml = requests.get(index,headers=headers).text 
+    IndexId = re.search(r'/?-\d{4}',IndexHtml)
+    NowId = int(re.search(r'[^-]{4}',IndexId.group()).group())
+    Tim = re.search(r'\d{1,2}[\u4e00-\u9fa5]{3}',IndexHtml).group()
+    print('最后更新时间：')
+    print('>>>>此 Token在 %s 更新<<<<'% Tim)
+    if NowId > id:
+        id = NowId
         url = 'http://www.dtpwxn.top/?thread-%s.htm'% id
         html = requests.get(url,headers=headers).text
     
